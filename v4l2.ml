@@ -28,6 +28,10 @@ external v4l2_decode_yuv422 : array_frame -> rgb_array_frame = "v4l2_decode_yuv4
 
 external v4l2_get_format : t'c -> string = "v4l2_get_format"
 
+external v4l2_get_fd : t'c -> Unix.file_descr = "v4l2_get_fd"
+
+let get_fd t = v4l2_get_fd t.t'c
+
 let destruct t =
   if t.started then v4l2_stop t.t'c;
   v4l2_done t.t'c

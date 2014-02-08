@@ -479,6 +479,14 @@ static inline RGB rgb_of_yuv(unsigned char Y, unsigned char U, unsigned char V)
 }
 
 value
+v4l2_get_fd(value t)
+{
+  CAMLparam1(t);
+  struct t* t_ = (struct t*) t;
+  CAMLreturn(Int_val(t_->fd));
+}
+
+value
 v4l2_decode_yuv422(value frame)
 {
   CAMLparam1(frame);
