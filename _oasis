@@ -10,5 +10,6 @@ Library v4l2
   Path:       .
   BuildTools: ocamlbuild
   Modules:    V4l2, V4l2common
+  BuildDepends: bigarray
   CSources:   v4l2_stubs.c
   CCLib:      -ljpeg  
