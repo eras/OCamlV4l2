@@ -1,0 +1,14 @@
+OASISFormat: 0.3
+Name:        V4L2
+Version:     0.1
+Synopsis:    Video4Linux2 bindings for OCaml
+Authors:     Erkki Seppälä <flux@inside.org>
+License:     BSD3
+Plugins:     META (0.3)
+
+Library v4l2
+  Path:       .
+  BuildTools: ocamlbuild
+  Modules:    V4l2, V4l2common
+  CSources:   v4l2_stubs.c
+  CCLib:      -ljpeg  
