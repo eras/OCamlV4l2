@@ -91,10 +91,6 @@ let get_frame t =
       | "MJPG" -> v4l2_decode_mjpeg raw
       | "YUYV" -> v4l2_decode_yuv422 raw
       | x -> failwith ("invalid format " ^ x)
-    method raw = string_of_bigarray raw
-    method rgb = 
-      match format with
-      | "MJPG" -> string_of_bigarray (v4l2_decode_mjpeg raw)
-      | "YUYV" -> string_of_bigarray (v4l2_decode_yuv422 raw)
-      | x -> failwith ("invalid format " ^ x)
+    method raw = string_of_bigarray self#raw_ba
+    method rgb = string_of_bigarray self#rgb_ba
    end)
