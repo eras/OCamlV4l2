@@ -483,7 +483,7 @@ v4l2_get_fd(value t)
 {
   CAMLparam1(t);
   struct t* t_ = (struct t*) t;
-  CAMLreturn(Int_val(t_->fd));
+  CAMLreturn(Val_int(t_->fd));
 }
 
 value
