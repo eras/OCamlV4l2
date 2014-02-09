@@ -61,7 +61,7 @@ let string_of_bigarray array_frame =
   let len = Array1.dim array_frame in
   let s = String.create len in
     for c = 0 to len - 1 do
-      String.set s c array_frame.{c}
+      String.set s c (Char.chr array_frame.{c})
     done;
     s
 
