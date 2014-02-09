@@ -8,10 +8,6 @@ type t = {
   mutable started	: bool
 }
 
-type array_frame = (char, Bigarray.int8_unsigned_elt, Bigarray.c_layout) Bigarray.Array1.t
-
-type rgb_array_frame = (char, Bigarray.int8_unsigned_elt, Bigarray.c_layout) Bigarray.Array1.t
-
 external v4l2_open : string -> int -> int -> t'c = "v4l2_open"
 
 external v4l2_done : t'c -> unit = "v4l2_done"
@@ -88,7 +84,13 @@ let get_frame t =
       get_nonzero_frame ()
   in
   let format = v4l2_get_format t.t'c in
-  (object
+  (object (self)
+    method raw_ba = raw
+    method rgb_ba = 
+      match format with
+      | "MJPG" -> v4l2_decode_mjpeg raw
+      | "YUYV" -> v4l2_decode_yuv422 raw
+      | x -> failwith ("invalid format " ^ x)
     method raw = string_of_bigarray raw
     method rgb = 
       match format with
